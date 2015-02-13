@@ -186,7 +186,7 @@ Explanation of the fields
 
 # Receive Payment Notification
 
-The `notificationUrl` parameter will determine the URL that will receive a `POST` request when given transaction is fully confirmed
+The `notificationUrl` parameter will determine the URL that will receive a `POST` request when given transaction is fully confirmed, the state is `CONFIRMED`. At this time it's not possible to be notified at each state change.
 
 We will call this URL using `POST` request with following content:
 ```
@@ -204,7 +204,7 @@ We will call this URL using `POST` request with following content:
 
 Please note that this is exactly the same format that is used in "Check Payment Status"
 
-We will attempt to call this URL only once, so in case you have missed payment notification you can login to the dashboard and request a resend.
+For each `CONFIRMED` transaction we will attempt to call `notificationUrl` at least once. This means that you might receive duplicated notifications. In case you have missed payment notification (for example your server wasn't available) you can login to the dashboard and request a resend.
 
 # Payment Workflows/Scenarios
 This section is TODO
@@ -212,7 +212,7 @@ This section is TODO
 # Testing
 
 We provide a testing server which is a physically separate environment and it's running against Bitcoin testnet.  
-For testing we recommend using either `bitcoin-qt` wallet in the testnet mode or [Bitcoin Wallet for Testnet](https://play.google.com/store/apps/details?id=de.schildbach.wallet_test&hl=en)  
+For testing we recommend using either `bitcoin-qt` wallet in the testnet mode or [Bitcoin Wallet for Testnet](https://play.google.com/store/apps/details?id=de.schildbach.wallet_test&hl=en), there is only version for Android.  
 You can request the testnet Bitcoins at one of many faucets:  
 * http://tpfaucet.appspot.com/
 * http://faucet.xeno-genesis.com/
