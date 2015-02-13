@@ -1,5 +1,6 @@
-This repository contains API documentation for bitcoinpaygate.com payment processor.
+This repository contains API documentation for [BitcoinPaygate](https://bitcoinpaygate.com) payment processor.
 
+# Index
 - [Introduction](#introduction)
 - [API Access](#api-access)
 	- [API Keys](#api-keys)
@@ -36,16 +37,15 @@ The API relies on HTTP Basic Authentication mechanism.
 
 You should set the username as your API key and leave the password field blank.
 
-
 ## Transaction Speed
 
 In the dashboard you are able to specify how fast you want the transactions to be processed:
 
 | Transaction Speed | Description                                                                                                                   |
 |-------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| HIGH              | Payment is considered to be confirmed immediately upon receipt of payment, that is 0 confirmations on the Bitcoin p2p network |
-| MEDIUM            | Payment is considered to be confirmed after 1 block confirmation on the Bitcoin p2p network approximately 10 minutes          |
-| LOW               | Payment is considered to be confirmed after 1 block confirmation on the Bitcoin p2p network approximately 1 hour              |
+| HIGH              | Payment is considered to be `CONFIRMED` immediately upon receipt of payment, that is 0 confirmations on the Bitcoin network, these payments can skip the `PAID` state |
+| MEDIUM            | Payment is considered to be `CONFIRMED` after 1 block confirmation on the Bitcoin network approximately 10 minutes         |
+| LOW               | Payment is considered to be `CONFIRMED` after 6 block confirmations on the Bitcoin network approximately 1 hour              |
 
 
 # Payment States
@@ -55,7 +55,7 @@ Each payment transaction can exist in one of the following states:
 | Payment Status | Description                                                                                             |
 |----------------|---------------------------------------------------------------------------------------------------------|
 | NEW            | payment requests starts in this state.                                                                  |
-| PAID           | When payment is received by Bitcoinpaygate server, payment goes into this state                         |
+| PAID           | When payment is received by Bitcoinpaygate server, payment goes into this state. Payment might stay in this state for up to 60 minutes in case when transaction seed is set to `LOW` or this state might be omitted when transaction speed is `HIGH`                      |
 | CONFIRMED      | The transaction speed preferences of a payment determines when payments are confirmed.                  |
 | COMPLETE       | Payment has been credited into merchant's account                                                       |
 | EXPIRED        | This happens when payment has not been received before its expiration time                              |
@@ -79,12 +79,13 @@ Content of the request:
   "currency" : "USD",
   "notificationUrl" : "https://example.com/pay",
   "transactionSpeed" : "HIGH",
-  "memo" : "Order of flowers and chocolates",
+  "message" : "Order of flowers and chocolates",
   "paymentAckMessage" : "Thank you for shopping at example.com"
   "merchantTransactionId" : "2015-03-10/123/1"
 }
 
 ```
+All parameters are required.
 
 Explanation of the fields:
 
@@ -94,7 +95,7 @@ Explanation of the fields:
 | currency              | A ISO 4217 currency code of the currency you are requesting to receive examples: "USD", "GBP", "EUR"                                                       |
 | notificationUrl       | A HTTPS URL where the payment notification will be send. Notifications are sent when payment reaches `CONFIRMED` status.                                   |
 | transactionSpeed      | This can be "HIGH", "MEDIUM", or "LOW". Meaning of each field is described in separate section.                                                            |
-| memo                  | This will be displayed in the customers' Bitcoin wallet application when requesting the payment.                                                           |
+| message                  | This will be displayed in the customers' Bitcoin wallet application when requesting the payment.                                                           |
 | paymentAckMessage     | This will be displayed to the client in the Bitcoin wallet application when we confirm the payment - this is currently not used.                           |
 | merchantTransactionId | A identifier for this payment on the merchant side. We will pass this field to you in the `POST` message when the payment is confirmed.                    |
 
@@ -120,7 +121,7 @@ Explanation of the fields:
 | amount         | A amount of Bitcoin we are expecting to receive, this is a String-formatted number                |
 | address        | A Bitcoin address where the payment should be sent                                                |
 | label          | Identifier of the merchant (this is configurable in the dashboard)                                |
-| message        | Says what the customer is paying for, this is coming from the `memo` field in the payment request |
+| message        | Says what the customer is paying for, this is coming from the `message` field in the payment request |
 | paymentAddress | A BIP21 formatted URL that is recognized by the customer's Bitcoin wallet                         |                                                                                     |
 
 This means that we are expecting the `0.03444190` of BTC to be paid to this address `mjSk1Ny9spzU2fouzYgLqGUD8U41iR35QN`
@@ -178,7 +179,7 @@ Explanation of the fields
 | amount                | A amount of currency that was paid for this payment.                                                                                                          |
 | currency              | A currency code from the payment request.                                                                                                                     |
 | status                | A String with the payment status. Payment statuses are explained in the separate section.                                                                     |
-| paymentTime           | A String containing a UNIX timestamp in milliseconds format when the payment was confirmed on our side. This field is optional.                               |
+| paymentTime           | A String containing a UNIX timestamp in milliseconds format when the payment was confirmed on our side. This field is optional - it can either be omitted or set to null.                               |
 | expirationTime        | A String containing a UNIX timestamp in milliseconds format saying when the payment will expire. This is only valid for `NEW` payments but is always present. |
 | currentTime           | A String containing a UNIX timestamp in milliseconds format with the current server time for your reference.                                                  |
 | merchantTransactionId | A transaction identifier on your side that was passed when requesting a payment                                                                               |
@@ -210,7 +211,13 @@ This section is TODO
 
 # Testing
 
-We provide a testing server which is a physically separate environment and it's running against Bitcoin testnet.
+We provide a testing server which is a physically separate environment and it's running against Bitcoin testnet.  
+For testing we recommend using either `bitcoin-qt` wallet in the testnet mode or [Bitcoin Wallet for Testnet](https://play.google.com/store/apps/details?id=de.schildbach.wallet_test&hl=en)  
+You can request the testnet Bitcoins at one of many faucets:  
+* http://tpfaucet.appspot.com/
+* http://faucet.xeno-genesis.com/
+* http://kuttler.eu/bitcoin/btc/faucet/
+
 
 # Problems
 
