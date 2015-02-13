@@ -1,5 +1,18 @@
 This repository contains API documentation for bitcoinpaygate.com payment processor.
 
+- [Introduction](#introduction)
+- [API Access](#api-access)
+	- [API Keys](#api-keys)
+	- [API Authentication](#api-authentication)
+	- [Transaction Speed](#transaction-speed)
+- [Payment States](#payment-states)
+- [Request New Payment](#request-new-payment)
+- [Check Payment Status](#check-payment-status)
+- [Receive Payment Notification](#receive-payment-notification)
+- [Payment Workflows/Scenarios](#payment-workflowsscenarios)
+- [Testing](#testing)
+- [Problems](#problems)
+
 # Introduction
 The BitcoinPaygate Payment Gateway API is a tool for merchants to allow clients to pay in Bitcoins while receiving fiat currencies to your bank account.
 
@@ -73,6 +86,19 @@ Content of the request:
 
 ```
 
+Explanation of the fields:
+
+| Field Name            | Format And Meaning                                                                                                                                         |
+|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| amount                | String that contains a formatted amount of `currency` you are requesting to receive valid examples: "1.00", "1", "99" invalid examples: "abc", 1, 1.00, 99 |
+| currency              | A ISO 4217 currency code of the currency you are requesting to receive examples: "USD", "GBP", "EUR"                                                       |
+| notificationUrl       | A HTTPS URL where the payment notification will be send. Notifications are sent when payment reaches `CONFIRMED` status.                                   |
+| transactionSpeed      | This can be "HIGH", "MEDIUM", or "LOW". Meaning of each field is described in separate section.                                                            |
+| memo                  | This will be displayed in the customers' Bitcoin wallet application when requesting the payment.                                                           |
+| paymentAckMessage     | This will be displayed to the client in the Bitcoin wallet application when we confirm the payment - this is currently not used.                           |
+| merchantTransactionId | A identifier for this payment on the merchant side. We will pass this field to you in the `POST` message when the payment is confirmed.                    |
+
+
 Our response:
 
 ```
@@ -85,6 +111,17 @@ Our response:
   "paymentAddress" : "bitcoin:mjSk1Ny9spzU2fouzYgLqGUD8U41iR35QN?amount=0.03444190&label=Your+store+name&message=Order+of+flowers+%26+chocolates"
 }
 ```
+
+Explanation of the fields:
+
+| Field Name     | Format And Meaning                                                                                |
+|----------------|---------------------------------------------------------------------------------------------------|
+| transactionId  | A transaction identifier on our side.                                                             |
+| amount         | A amount of Bitcoin we are expecting to receive, this is a String-formatted number                |
+| address        | A Bitcoin address where the payment should be sent                                                |
+| label          | Identifier of the merchant (this is configurable in the dashboard)                                |
+| message        | Says what the customer is paying for, this is coming from the `memo` field in the payment request |
+| paymentAddress | A BIP21 formatted URL that is recognized by the customer's Bitcoin wallet                         |                                                                                     |
 
 This means that we are expecting the `0.03444190` of BTC to be paid to this address `mjSk1Ny9spzU2fouzYgLqGUD8U41iR35QN`
 
@@ -133,6 +170,19 @@ Our response for fully and correctly paid transaction:
 }
 ```
 
+Explanation of the fields
+
+| Field Name            | Format And Meaning                                                                                                                                            |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| transactionId         | A transaction identifier on our side, for which the payment was made                                                                                          |
+| amount                | A amount of currency that was paid for this payment.                                                                                                          |
+| currency              | A currency code from the payment request.                                                                                                                     |
+| status                | A String with the payment status. Payment statuses are explained in the separate section.                                                                     |
+| paymentTime           | A String containing a UNIX timestamp in milliseconds format when the payment was confirmed on our side. This field is optional.                               |
+| expirationTime        | A String containing a UNIX timestamp in milliseconds format saying when the payment will expire. This is only valid for `NEW` payments but is always present. |
+| currentTime           | A String containing a UNIX timestamp in milliseconds format with the current server time for your reference.                                                  |
+| merchantTransactionId | A transaction identifier on your side that was passed when requesting a payment                                                                               |
+
 # Receive Payment Notification
 
 The `notificationUrl` parameter will determine the URL that will receive a `POST` request when given transaction is fully confirmed
@@ -156,6 +206,7 @@ Please note that this is exactly the same format that is used in "Check Payment 
 We will attempt to call this URL only once, so in case you have missed payment notification you can login to the dashboard and request a resend.
 
 # Payment Workflows/Scenarios
+This section is TODO
 
 # Testing
 
