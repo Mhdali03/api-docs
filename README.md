@@ -153,6 +153,7 @@ Our response for new transaction:
   "expirationTime" : "1411421014977",
   "currentTime" : "1411403014977"
   "merchantTransactionId" : "2015-03-10/123/1"
+	"transactionSpeed" : "LOW"
 }
 ```
 
@@ -168,6 +169,7 @@ Our response for fully and correctly paid transaction:
   "expirationTime" : "1411421014977",
   "currentTime" : "1411403014977"
   "merchantTransactionId" : "2015-03-10/123/1"
+	"transactionSpeed" : "LOW"
 }
 ```
 
@@ -183,6 +185,7 @@ Explanation of the fields
 | expirationTime        | A String containing a UNIX timestamp in milliseconds format saying when the payment will expire. This is only valid for `NEW` payments but is always present. |
 | currentTime           | A String containing a UNIX timestamp in milliseconds format with the current server time for your reference.                                                  |
 | merchantTransactionId | A transaction identifier on your side that was passed when requesting a payment                                                                               |
+| transactionSpeed      | Transaction speed |
 
 # Receive Payment Notification
 
@@ -199,6 +202,7 @@ We will call this URL using `POST` request with following content:
   "expirationTime" : "1411421014977",
   "currentTime" : "1411403014977"
   "merchantTransactionId" : "2015-03-10/123/1"
+	"transactionSpeed" : "LOW"
 }
 ```
 
