@@ -11,6 +11,7 @@ This repository contains API documentation for [BitcoinPaygate](https://bitcoinp
 - [Check Payment Status](#check-payment-status)
 - [Receive Payment Notification](#receive-payment-notification)
 - [Payment Workflows/Scenarios](#payment-workflowsscenarios)
+- [Staying updated](#staying-updated)
 - [Testing](#testing)
 - [Problems](#problems)
 
@@ -154,6 +155,8 @@ Our response for new transaction:
   "currentTime" : "1411403014977"
   "merchantTransactionId" : "2015-03-10/123/1"
 	"transactionSpeed" : "LOW"
+	"notificationUrl" : "https://example.com/notify"
+	"message" : "payment for cookies"
 }
 ```
 
@@ -170,6 +173,8 @@ Our response for fully and correctly paid transaction:
   "currentTime" : "1411403014977"
   "merchantTransactionId" : "2015-03-10/123/1"
 	"transactionSpeed" : "LOW"
+	"notificationUrl" : "https://example.com/notify"
+	"message" : "payment for cookies"
 }
 ```
 
@@ -186,6 +191,8 @@ Explanation of the fields
 | currentTime           | A String containing a UNIX timestamp in milliseconds format with the current server time for your reference.                                                  |
 | merchantTransactionId | A transaction identifier on your side that was passed when requesting a payment                                                                               |
 | transactionSpeed      | Transaction speed |
+| notificationUrl 		  | This URL will be called later with POST request when the payment is `CONFIRMED` |
+| message               | This message should be saved by the client's wallet as a reminder for what the payment was made |
 
 # Receive Payment Notification
 
@@ -203,6 +210,8 @@ We will call this URL using `POST` request with following content:
   "currentTime" : "1411403014977"
   "merchantTransactionId" : "2015-03-10/123/1"
 	"transactionSpeed" : "LOW"
+	"notificationUrl" : "https://example.com/notify"
+	"message" : "payment for cookies"
 }
 ```
 
@@ -211,7 +220,12 @@ Please note that this is exactly the same format that is used in "Check Payment 
 For each `CONFIRMED` transaction we will attempt to call `notificationUrl` at least once. This means that you might receive duplicated notifications. In case you have missed payment notification (for example your server wasn't available) you can login to the dashboard and request a resend.
 
 # Payment Workflows/Scenarios
+
 This section is TODO
+
+# Staying updated
+
+This documentation is deployed to Github so you can use Github's "Watch" feature to keep receiving updates on the changes.
 
 # Testing
 
