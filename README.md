@@ -10,6 +10,7 @@ This repository contains API documentation for [BitcoinPaygate](https://bitcoinp
 - [Request New Payment](#request-new-payment)
 - [Check Payment Status](#check-payment-status)
 - [Receive Payment Notification](#receive-payment-notification)
+- [Request Payment Notification Resend](#request-payment-notification-resend)
 - [Payment Workflows/Scenarios](#payment-workflowsscenarios)
 - [Staying updated](#staying-updated)
 - [Testing](#testing)
@@ -76,13 +77,13 @@ Content of the request:
 
 ```
 {
-  "amount" : "10.00",
-  "currency" : "USD",
-  "notificationUrl" : "https://example.com/pay",
-  "transactionSpeed" : "HIGH",
-  "message" : "Order of flowers and chocolates",
-  "paymentAckMessage" : "Thank you for shopping at example.com"
-  "merchantTransactionId" : "2015-03-10/123/1"
+	"amount" : "10.00",
+	"currency" : "USD",
+	"notificationUrl" : "https://example.com/pay",
+	"transactionSpeed" : "HIGH",
+	"message" : "Order of flowers and chocolates",
+	"paymentAckMessage" : "Thank you for shopping at example.com"
+	"merchantTransactionId" : "2015-03-10/123/1"
 }
 
 ```
@@ -105,12 +106,12 @@ Our response:
 
 ```
 {
-  "transactionId" : "95bf1d853cf2e040f0ce219221f9b17206525941",
-  "amount" : "0.03444190",
-  "address" : "mjSk1Ny9spzU2fouzYgLqGUD8U41iR35QN"
-  "label"  : "Your store name"
-  "message"  : "Order of flowers and chocolates"
-  "paymentAddress" : "bitcoin:mjSk1Ny9spzU2fouzYgLqGUD8U41iR35QN?amount=0.03444190&label=Your+store+name&message=Order+of+flowers+%26+chocolates"
+	"transactionId" : "95bf1d853cf2e040f0ce219221f9b17206525941",
+	"amount" : "0.03444190",
+	"address" : "mjSk1Ny9spzU2fouzYgLqGUD8U41iR35QN"
+	"label"  : "Your store name"
+	"message"  : "Order of flowers and chocolates"
+	"paymentAddress" : "bitcoin:mjSk1Ny9spzU2fouzYgLqGUD8U41iR35QN?amount=0.03444190&label=Your+store+name&message=Order+of+flowers+%26+chocolates"
 }
 ```
 
@@ -147,13 +148,13 @@ Our response for new transaction:
 
 ```
 {
-  "transactionId" : "95bf1d853cf2e040f0ce219221f9b17206525941",
-  "amount" : "10.00",
-  "currency" : "USD",
-  "status" : "NEW",
-  "expirationTime" : "1411421014977",
-  "currentTime" : "1411403014977"
-  "merchantTransactionId" : "2015-03-10/123/1"
+	"transactionId" : "95bf1d853cf2e040f0ce219221f9b17206525941",
+	"amount" : "10.00",
+	"currency" : "USD",
+	"status" : "NEW",
+	"expirationTime" : "1411421014977",
+	"currentTime" : "1411403014977"
+	"merchantTransactionId" : "2015-03-10/123/1"
 	"transactionSpeed" : "LOW"
 	"notificationUrl" : "https://example.com/notify"
 	"message" : "payment for cookies"
@@ -164,14 +165,14 @@ Our response for fully and correctly paid transaction:
 
 ```
 {
-  "transactionId" : "95bf1d853cf2e040f0ce219221f9b17206525941",
-  "amount" : "10.00",
-  "currency" : "USD",
-  "status" : "CONFIRMED",
-  "paymentTime" : "1411421013977",
-  "expirationTime" : "1411421014977",
-  "currentTime" : "1411403014977"
-  "merchantTransactionId" : "2015-03-10/123/1"
+	"transactionId" : "95bf1d853cf2e040f0ce219221f9b17206525941",
+	"amount" : "10.00",
+	"currency" : "USD",
+	"status" : "CONFIRMED",
+	"paymentTime" : "1411421013977",
+	"expirationTime" : "1411421014977",
+	"currentTime" : "1411403014977"
+	"merchantTransactionId" : "2015-03-10/123/1"
 	"transactionSpeed" : "LOW"
 	"notificationUrl" : "https://example.com/notify"
 	"message" : "payment for cookies"
@@ -201,14 +202,14 @@ The `notificationUrl` parameter will determine the URL that will receive a `POST
 We will call this URL using `POST` request with following content:
 ```
 {
-  "transactionId" : "95bf1d853cf2e040f0ce219221f9b17206525941",
-  "amount" : "10.00",
-  "currency" : "USD",
-  "status" : "CONFIRMED",
-  "paymentTime" : "1411421013977",
-  "expirationTime" : "1411421014977",
-  "currentTime" : "1411403014977"
-  "merchantTransactionId" : "2015-03-10/123/1"
+	"transactionId" : "95bf1d853cf2e040f0ce219221f9b17206525941",
+	"amount" : "10.00",
+	"currency" : "USD",
+	"status" : "CONFIRMED",
+	"paymentTime" : "1411421013977",
+	"expirationTime" : "1411421014977",
+	"currentTime" : "1411403014977"
+	"merchantTransactionId" : "2015-03-10/123/1"
 	"transactionSpeed" : "LOW"
 	"notificationUrl" : "https://example.com/notify"
 	"message" : "payment for cookies"
@@ -217,7 +218,41 @@ We will call this URL using `POST` request with following content:
 
 Please note that this is exactly the same format that is used in "Check Payment Status"
 
-For each `CONFIRMED` transaction we will attempt to call `notificationUrl` at least once. This means that you might receive duplicated notifications. In case you have missed payment notification (for example your server wasn't available) you can login to the dashboard and request a resend.
+For each `CONFIRMED` transaction we will attempt to call `notificationUrl` at least once. This means that you might receive duplicated notifications. In case you have missed payment notification (for example your server wasn't available) you can login to the dashboard and request a resend or use our API to request additional notification.
+
+# Request Payment Notification Resend
+If you want to request a payment notification to be resend to you, please use following endpoint:
+
+API endpoint:
+
+```
+/api/v1/payments/notify/{id}
+```
+Request type: `GET`
+
+
+The `{id}` parameter should be replaced by `transactionId` from the new payment response
+
+Response after calling this endpoint can be either:
+
+```
+{
+	"value": 402
+}
+```
+
+This means that we are still waiting for the payment to change state into `CONFIRMED`
+
+or
+
+```
+{
+	"value": 200
+}
+```
+
+This means that the payment notification has been scheduled for resending and should call your service (this usually takes few seconds)
+
 
 # Payment Workflows/Scenarios
 
@@ -235,6 +270,8 @@ You can request the testnet Bitcoins at one of many faucets:
 * http://tpfaucet.appspot.com/
 * http://faucet.xeno-genesis.com/
 * http://kuttler.eu/bitcoin/btc/faucet/
+
+To see payment notifications you can use [Request Bin](http://requestb.in/) - just pass a generated URL as notification URL
 
 
 # Problems
