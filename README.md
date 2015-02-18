@@ -112,6 +112,8 @@ Our response:
 	"label"  : "Your store name"
 	"message"  : "Order of flowers and chocolates"
 	"paymentAddress" : "bitcoin:mjSk1Ny9spzU2fouzYgLqGUD8U41iR35QN?amount=0.03444190&label=Your+store+name&message=Order+of+flowers+%26+chocolates"
+	"expirationTime": "1424273503000"
+	"merchantTransactionId" : "2015-03-10/123/1"
 }
 ```
 
@@ -124,7 +126,9 @@ Explanation of the fields:
 | address        | A Bitcoin address where the payment should be sent                                                |
 | label          | Identifier of the merchant (this is configurable in the dashboard)                                |
 | message        | Says what the customer is paying for, this is coming from the `message` field in the payment request |
-| paymentAddress | A BIP21 formatted URL that is recognized by the customer's Bitcoin wallet                         |                                                                                     |
+| paymentAddress | A BIP21 formatted URL that is recognized by the customer's Bitcoin wallet                         |
+| expirationTime | A String containing a UNIX timestamp in milliseconds format saying when the payment will expire. It can be displayed to the customer |
+| merchantTransactionId | A transaction identifier on your side that was passed when requesting a payment |
 
 This means that we are expecting the `0.03444190` of BTC to be paid to this address `mjSk1Ny9spzU2fouzYgLqGUD8U41iR35QN`
 
