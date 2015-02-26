@@ -10,6 +10,7 @@ This repository contains API documentation for [BitcoinPaygate](https://bitcoinp
 - [Request New Payment](#request-new-payment)
 - [Check Payment Status](#check-payment-status)
 - [Receive Payment Notification](#receive-payment-notification)
+  - [Payment Notification Security](#payment-notification-security)
 - [Request Payment Notification Resend](#request-payment-notification-resend)
 - [Payment Workflows/Scenarios](#payment-workflowsscenarios)
 - [Staying updated](#staying-updated)
@@ -223,6 +224,13 @@ We will call this URL using `POST` request with following content:
 Please note that this is exactly the same format that is used in "Check Payment Status"
 
 For each `CONFIRMED` transaction we will attempt to call `notificationUrl` at least once. This means that you might receive duplicated notifications. In case you have missed payment notification (for example your server wasn't available) you can login to the dashboard and request a resend or use our API to request additional notification.
+
+### Payment Notification Security
+
+It is possible that malicious user will try to attempt to send `POST` request to your notification endpoint saying that his payment was confirmed when in fact it wasn't paid.
+
+To mitigate that risk it is recommended that after receiving payment notification you will query our API to confirm payment status.
+
 
 # Request Payment Notification Resend
 If you want to request a payment notification to be resend to you, please use following endpoint:
