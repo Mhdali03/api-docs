@@ -5,7 +5,8 @@ This repository contains API documentation for [BitcoinPaygate](https://bitcoinp
 - [API Access](#api-access)
 	- [API Keys](#api-keys)
 	- [API Authentication](#api-authentication)
-	- [Transaction Speed](#transaction-speed)
+	- [Request Limits](#request-limits)
+- [Transaction Speed](#transaction-speed)
 - [Payment States](#payment-states)
 - [Request New Payment](#request-new-payment)
 - [Check Payment Status](#check-payment-status)
@@ -18,7 +19,7 @@ This repository contains API documentation for [BitcoinPaygate](https://bitcoinp
 - [Problems](#problems)
 
 # Introduction
-The BitcoinPaygate Payment Gateway API is a tool for merchants to allow clients to pay in Bitcoins while receiving fiat currencies to your bank account.
+The BitcoinPaygate Payment Gateway API is a tool for merchants to allow clients to pay in Bitcoin while receiving fiat currencies to your bank account.
 
 Our API uses REST and JSON as a primary way of communication.
 
@@ -35,12 +36,15 @@ The API is responding only to HTTPS requests.
 ## API Keys
 Your keys can be generated in the merchant dashboard and **should be kept private**
 
+## Request Limits
+At the moment we don't do any rate-limiting of incoming API calls.
+
 ## API Authentication
 The API relies on HTTP Basic Authentication mechanism.
 
 You should set the username as your API key and leave the password field blank.
 
-## Transaction Speed
+# Transaction Speed
 
 In the dashboard you are able to specify how fast you want the transactions to be processed:
 
@@ -278,10 +282,13 @@ This documentation is deployed to Github so you can use Github's "Watch" feature
 
 We provide a testing server which is a physically separate environment and it's running against Bitcoin testnet.  
 For testing we recommend using either `bitcoin-qt` wallet in the testnet mode or [Bitcoin Wallet for Testnet](https://play.google.com/store/apps/details?id=de.schildbach.wallet_test&hl=en), there is only version for Android.  
-You can request the testnet Bitcoins at one of many faucets:  
+
+The testnet Bitcoins are free and can be requested on these websites:  
 * http://tpfaucet.appspot.com/
 * http://faucet.xeno-genesis.com/
 * http://kuttler.eu/bitcoin/btc/faucet/
+
+You can also get in touch with us and we'll send you testnet Bitcoins.
 
 To see payment notifications you can use [Request Bin](http://requestb.in/) - just pass a generated URL as notification URL
 
