@@ -1,7 +1,7 @@
 This repository contains API documentation for [BitcoinPaygate](https://bitcoinpaygate.com) payment processor.
 
 # Index
-- [Introduction](#introduction)
+- [Introduction](introduction.md)
 - [API Access](#api-access)
 	- [API Keys](#api-keys)
 	- [API Authentication](#api-authentication)
@@ -13,21 +13,10 @@ This repository contains API documentation for [BitcoinPaygate](https://bitcoinp
 - [Receive Payment Notification](#receive-payment-notification)
   - [Payment Notification Security](#payment-notification-security)
 - [Request Payment Notification Resend](#request-payment-notification-resend)
-- [Payment Workflows/Scenarios](#payment-workflowsscenarios)
+- [Payment Workflows/Scenarios](payment-workflows.md)
 - [Staying updated](#staying-updated)
 - [Testing](#testing)
 - [Problems](#problems)
-
-# Introduction
-The BitcoinPaygate Payment Gateway API is a tool for merchants to allow clients to pay in Bitcoin while receiving fiat currencies to your bank account.
-
-Our API uses REST and JSON as a primary way of communication.
-
-The following actions are available through our API:
-
-* Create new payment request
-* Check payment request status
-* Register callback to receive notification when the payment is completed
 
 # API Access
 API server location is given only to our clients.
@@ -268,11 +257,6 @@ or
 ```
 
 This means that the payment notification has been scheduled for resending and should call your service (this usually takes few seconds)
-
-
-# Payment Workflows/Scenarios
-
-This section is TODO
 
 # Staying updated
 
