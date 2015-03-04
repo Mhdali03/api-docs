@@ -9,3 +9,6 @@ This section describes few of the payment scenarios that are possible, diagrams 
 
 ### EXPIRED payment:
 ![EXPIRED payment](https://raw.githubusercontent.com/Bitcoinpaygate1/api-docs/master/images/expired-payment.png)
+
+### Underpaid payment:
+![Underpaid payment](https://raw.githubusercontent.com/Bitcoinpaygate1/api-docs/master/images/underpaid-payment.png)
