@@ -23,8 +23,22 @@ Please note that this is exactly the same format that is used in "Check Payment 
 
 For each `CONFIRMED` transaction we will attempt to call `notificationUrl` at least once. This means that you might receive duplicated notifications. In case you have missed payment notification (for example your server wasn't available) you can login to the dashboard and request a resend or use our API to request additional notification.
 
-### Payment Notification Security
+## Payment Notification Security
 
 It is possible that malicious user will try to attempt to send `POST` request to your notification endpoint saying that his payment was confirmed when in fact it wasn't paid.
 
 To mitigate that risk it is recommended that after receiving payment notification you will query our API to confirm payment status.
+
+## Revoking Payments
+
+This section applies only to `HIGH` speed transactions.  
+
+The `HIGH` speed transaction will go directly from `NEW` to `CONFIRMED` state when we receive a Bitcoin payment, it is possible that this payment ended up as incorrect - for example it wasn't confirmed by the Bitcoin network, it might be a user error or a attempt to perform a double spend attack.  
+
+If we don't receive a Bitcoin payment we will change status from `CONFIRMED` to `INVALID`, we will call your `notificationUrl` endpoint and you should stop processing this transaction on your side.  
+
+We wait for up to 1 hour for a payment to go through.  
+
+It's worth to note that this situation is very rare and it shouldn't prevent you from accepting payments at `HIGH` speed.
+
+Please also note that if the same situation happened for a `LOW` or `MEDIUM` speed transaction, they just wouldn't enter `CONFIRMED` state and will also be marked as `INVALID` 1 hour later.

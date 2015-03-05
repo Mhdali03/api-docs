@@ -24,6 +24,7 @@ The following actions are available through our API:
 - [Check Payment Status](check-payment-status.md)
 - [Receive Payment Notification](receive-payment-notification.md)
   - [Payment Notification Security](receive-payment-notification.md#payment-notification-security)
+  - [Revoking Payments](receive-payment-notification.md#revoking-payments)
 - [Request Payment Notification Resend](#request-payment-notification-resend)
 - [Payment Workflows/Scenarios](payment-workflows.md)
 - [Staying updated](#staying-updated)
