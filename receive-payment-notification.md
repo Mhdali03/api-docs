@@ -29,6 +29,11 @@ It is possible that malicious user will try to attempt to send `POST` request to
 
 To mitigate that risk it is recommended that after receiving payment notification you will query our API to confirm payment status.
 
+## Underpaid Payments
+
+In the rare case when the client has sent to little Bitcoins we will send you a appropriate notification so you can prompt the client to send the remaining amount.  
+This situation shouldn't happen under normal circumstances when the client is either scanning a QR code or clicking a application link to pay, but rather when they make a mistake when typing an amount manually.
+
 ## Revoking Payments
 
 This section applies only to `HIGH` speed transactions.  
