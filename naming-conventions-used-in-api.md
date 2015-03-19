@@ -1,7 +1,7 @@
 # Naming Conventions used in API
 
 * `NewPaymentRequest`  
-  * Object that can be send vai POST request to the API - requesting new payment  
+  * Object that can be send via POST request to the API - requesting new payment  
 * `NewPaymentResponse`  
   * Our response after receiving correct `NewPaymentRequest`  
 * `PaymentReceipt`  
