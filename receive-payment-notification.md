@@ -11,10 +11,10 @@ We will call this URL using `POST` request with following content:
   "status" : "CONFIRMED",
   "paymentTime" : "1411421013977",
   "expirationTime" : "1411421014977",
-  "currentTime" : "1411403014977"
-  "merchantTransactionId" : "2015-03-10/123/1"
-  "transactionSpeed" : "LOW"
-  "notificationUrl" : "https://example.com/notify"
+  "currentTime" : "1411403014977",
+  "merchantTransactionId" : "2015-03-10/123/1",
+  "transactionSpeed" : "LOW",
+  "notificationUrl" : "https://example.com/notify",
   "message" : "payment for cookies"
 }
 ```

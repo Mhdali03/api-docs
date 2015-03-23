@@ -18,7 +18,7 @@ Content of the request:
   "notificationUrl" : "https://example.com/pay",
   "transactionSpeed" : "HIGH",
   "message" : "Order of flowers and chocolates",
-  "paymentAckMessage" : "Thank you for shopping at example.com"
+  "paymentAckMessage" : "Thank you for shopping at example.com",
   "merchantTransactionId" : "2015-03-10/123/1"
 }
 
@@ -44,11 +44,11 @@ Our response:
 {
   "transactionId" : "95bf1d853cf2e040f0ce219221f9b17206525941",
   "amount" : "0.03444190",
-  "address" : "mjSk1Ny9spzU2fouzYgLqGUD8U41iR35QN"
-  "label"  : "Your store name"
-  "message"  : "Order of flowers and chocolates"
-  "paymentAddress" : "bitcoin:mjSk1Ny9spzU2fouzYgLqGUD8U41iR35QN?amount=0.03444190&label=Your+store+name&message=Order+of+flowers+%26+chocolates"
-  "expirationTime": "1424273503000"
+  "address" : "mjSk1Ny9spzU2fouzYgLqGUD8U41iR35QN",
+  "label" : "Your store name",
+  "message" : "Order of flowers and chocolates",
+  "paymentAddress" : "bitcoin:mjSk1Ny9spzU2fouzYgLqGUD8U41iR35QN?amount=0.03444190&label=Your+store+name&message=Order+of+flowers+%26+chocolates",
+  "expirationTime" : "1424273503000",
   "merchantTransactionId" : "2015-03-10/123/1"
 }
 ```
