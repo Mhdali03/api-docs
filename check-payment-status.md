@@ -14,7 +14,7 @@ The `{id}` parameter should be replaced by `transactionId` from the new payment 
 
 Our response for new transaction:
 
-```
+```json
 {
   "transactionId" : "95bf1d853cf2e040f0ce219221f9b17206525941",
   "amount" : "10.00",
@@ -31,7 +31,7 @@ Our response for new transaction:
 
 Our response for fully and correctly paid transaction:
 
-```
+```json
 {
   "transactionId" : "95bf1d853cf2e040f0ce219221f9b17206525941",
   "amount" : "10.00",

@@ -3,7 +3,7 @@
 The `notificationUrl` parameter will determine the URL that will receive a `POST` request when given transaction is fully confirmed, the state is `CONFIRMED`. At this time it's not possible to be notified at each state change.
 
 We will call this URL using `POST` request with following content:
-```
+```json
 {
   "transactionId" : "95bf1d853cf2e040f0ce219221f9b17206525941",
   "amount" : "10.00",

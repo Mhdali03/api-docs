@@ -13,7 +13,7 @@ The `{id}` parameter should be replaced by `transactionId` from the new payment 
 
 Response after calling this endpoint can be either:
 
-```
+```json
 {
   "value": 402
 }
@@ -23,7 +23,7 @@ This means that we are still waiting for the payment to change state into `CONFI
 
 or
 
-```
+```json
 {
   "value": 200
 }

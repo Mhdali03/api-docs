@@ -11,7 +11,7 @@ Request type: `POST`
 
 Content of the request:
 
-```
+```json
 {
   "amount" : "10.00",
   "currency" : "USD",
@@ -40,7 +40,7 @@ Explanation of the fields:
 
 Our response:
 
-```
+```json
 {
   "transactionId" : "95bf1d853cf2e040f0ce219221f9b17206525941",
   "amount" : "0.03444190",
