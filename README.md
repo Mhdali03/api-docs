@@ -18,6 +18,7 @@ The following actions are available through our API:
 	- [API Keys](api-access.md#api-keys)
 	- [API Authentication](api-access.md#api-authentication)
 	- [Request Limits](api-access.md#request-limits)
+- [API Clients and Plugins](api-clients-and-plugins.md)
 - [Naming Conventions Used In API](naming-conventions-used-in-api.md)
 - [Transaction Speed](transaction-speed.md)
 - [Payment States](payment-states.md)
