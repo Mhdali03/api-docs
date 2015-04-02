@@ -15,7 +15,8 @@ We will call this URL using `POST` request with following content:
   "merchantTransactionId" : "2015-03-10/123/1",
   "transactionSpeed" : "LOW",
   "notificationUrl" : "https://example.com/notify",
-  "message" : "payment for cookies"
+  "message" : "payment for cookies",
+  "merchantTransactionDetails" : "{products: [1,2,3]}"
 }
 ```
 

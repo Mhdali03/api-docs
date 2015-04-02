@@ -25,7 +25,8 @@ Our response for new transaction:
   "merchantTransactionId" : "2015-03-10/123/1",
   "transactionSpeed" : "LOW",
   "notificationUrl" : "https://example.com/notify",
-  "message" : "payment for cookies"
+  "message" : "payment for cookies",
+  "merchantTransactionDetails" : "{products: [1,2,3]}"
 }
 ```
 
@@ -43,7 +44,8 @@ Our response for fully and correctly paid transaction:
   "merchantTransactionId" : "2015-03-10/123/1",
   "transactionSpeed" : "LOW",
   "notificationUrl" : "https://example.com/notify",
-  "message" : "payment for cookies"
+  "message" : "payment for cookies",
+  "merchantTransactionDetails" : "{products: [1,2,3]}"
 }
 ```
 
@@ -62,3 +64,4 @@ Explanation of the fields
 | transactionSpeed      | Transaction speed |
 | notificationUrl 		  | This URL will be called later with POST request when the payment is `CONFIRMED` |
 | message               | This message should be saved by the client's wallet as a reminder for what the payment was made |
+| merchantTransactionDetails | A string field that can contain any additional information related to the payment, for example a JSON representation of the order |
