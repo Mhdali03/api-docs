@@ -14,4 +14,4 @@ This section describes few of the payment scenarios that are possible, diagrams 
 ![Underpaid payment](https://raw.githubusercontent.com/Bitcoinpaygate/api-docs/master/images/underpaid-payment.png)
 
 ### HIGH speed transaction paid incorrectly:
-![HIGH speed transaction paid incorrectly](https://raw.githubusercontent.com/Bitcoinpaygate1/api-docs/master/images/high-speed-paid-incorrectly.png)
+![HIGH speed transaction paid incorrectly](https://raw.githubusercontent.com/Bitcoinpaygate/api-docs/master/images/high-speed-paid-incorrectly.png)
