@@ -31,13 +31,18 @@ Explanation of the fields:
 | Field Name            | Format And Meaning                                                                                                                                         |
 |-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | amount                | String that contains a formatted amount of `currency` you are requesting to receive valid examples: "1.00", "1", "99" invalid examples: "abc", 1, 1.00, 99 |
-| currency              | A ISO 4217 currency code of the currency you are requesting to receive examples: "USD", "GBP", "EUR"                                                       |
+| currency              | A ISO 4217 currency code of the currency you are requesting to receive examples: "USD", "GBP", "EUR", "BTC"                                                       |
 | notificationUrl       | A HTTPS URL where the payment notification will be send. Notifications are sent when payment reaches `CONFIRMED` status.                                   |
 | transactionSpeed      | This can be "HIGH", "MEDIUM", or "LOW". Meaning of each field is described in separate section.                                                            |
 | message                  | This will be displayed in the customers' Bitcoin wallet application when requesting the payment.                                                           |
 | paymentAckMessage     | This will be displayed to the client in the Bitcoin wallet application when we confirm the payment - this is currently not used.                           |
 | merchantTransactionId | A identifier for this payment on the merchant side. We will pass this field to you in the `POST` message when the payment is confirmed.                    |
 | merchantTransactionDetails | (optional) A string field that can contain any additional information related to the payment, for example a JSON representation of the order |
+
+#### A note on requesting payments in `BTC` currency
+Our API supports both traditional fiat currencies (USD, EUR, GBP, etc) and Bitcoin (BTC).  
+In most cases merchants want to receive payments in their local currency (leaving dealing with BTC entirely to us - we send your selected currency via bank transfer)  
+In some (rare) cases merchants want to receive Bitcoin payments, in this case we will deal with accepting and verifying payments and later forward them to your Bitcoin address.
 
 
 Our response:

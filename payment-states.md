@@ -12,4 +12,4 @@ Each payment transaction can exist in one of the following states:
 | EXPIRED        | This happens when payment has not been received before its expiration time                              |
 | INVALID        | Payment is considered invalid when it was paid but payment was not confirmed within an hour of receipt or client has paid too low amount of Bitcoins |
 
-![State transitions](https://github.com/Bitcoinpaygate/api-docs/blob/master/images/state transitions.png)
+![State transitions](https://github.com/bitcoinpaygate/api-docs/blob/master/images/state transitions.png)
