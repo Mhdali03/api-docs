@@ -30,6 +30,25 @@ Our response for new transaction:
 }
 ```
 
+Our response for an underpaid transaction:
+
+```json
+{
+  "transactionId" : "95bf1d853cf2e040f0ce219221f9b17206525941",
+  "amount" : "10.00",
+  "currency" : "USD",
+  "status" : "UNDERPAID",
+  "missingAmount" : 0.01,
+  "paymentTime" : "1411421013977",
+  "expirationTime" : "1411421014977",
+  "currentTime" : "1411403014977",
+  "merchantTransactionId" : "2015-03-10/123/1",
+  "transactionSpeed" : "LOW",
+  "notificationUrl" : "https://example.com/notify",
+  "message" : "payment for cookies",
+  "merchantTransactionDetails" : "{products: [1,2,3]}"
+}
+
 Our response for fully and correctly paid transaction:
 
 ```json
