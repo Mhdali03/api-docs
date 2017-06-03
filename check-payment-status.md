@@ -38,7 +38,7 @@ Our response for an underpaid transaction:
   "amount" : "10.00",
   "currency" : "USD",
   "status" : "UNDERPAID",
-  "missingAmount" : 0.01,
+  "remainingToPay" : 0.01,
   "paymentTime" : "1411421013977",
   "expirationTime" : "1411421014977",
   "currentTime" : "1411403014977",
@@ -74,6 +74,7 @@ Explanation of the fields
 |-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | transactionId         | A transaction identifier on our side, for which the payment was made                                                                                          |
 | amount                | A amount of currency that was paid for this payment.                                                                                                          |
+| remainingToPay        | A amount BTC that is remaining to be paid, in case when transaction wasn't paid it will be equal to 'amount' from 'new payment response', useful for 'UNDERPAID' transactions                                                                                 |
 | currency              | A currency code from the payment request.                                                                                                                     |
 | status                | A String with the payment status. Payment statuses are explained in the separate section.                                                                     |
 | paymentTime           | A String containing a UNIX timestamp in milliseconds format when the payment was confirmed on our side. This field is optional - it can either be omitted or set to null.                               |
