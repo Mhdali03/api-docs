@@ -18,6 +18,7 @@ Our response for new transaction:
 {
   "transactionId" : "95bf1d853cf2e040f0ce219221f9b17206525941",
   "amount" : "10.00",
+  "remainingToPay" : "0.5",
   "currency" : "USD",
   "status" : "NEW",
   "expirationTime" : "1411421014977",
@@ -38,7 +39,7 @@ Our response for an underpaid transaction:
   "amount" : "10.00",
   "currency" : "USD",
   "status" : "UNDERPAID",
-  "remainingToPay" : 0.01,
+  "remainingToPay" : "0.01",
   "paymentTime" : "1411421013977",
   "expirationTime" : "1411421014977",
   "currentTime" : "1411403014977",
@@ -48,6 +49,7 @@ Our response for an underpaid transaction:
   "message" : "payment for cookies",
   "merchantTransactionDetails" : "{products: [1,2,3]}"
 }
+```
 
 Our response for fully and correctly paid transaction:
 
@@ -57,6 +59,7 @@ Our response for fully and correctly paid transaction:
   "amount" : "10.00",
   "currency" : "USD",
   "status" : "CONFIRMED",
+  "remainingToPay" : "0",
   "paymentTime" : "1411421013977",
   "expirationTime" : "1411421014977",
   "currentTime" : "1411403014977",
