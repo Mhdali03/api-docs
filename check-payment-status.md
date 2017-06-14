@@ -74,6 +74,29 @@ Our response for fully and correctly paid transaction:
 }
 ```
 
+Our response for overpaid paid transaction:
+
+```json
+{
+  "transactionId" : "95bf1d853cf2e040f0ce219221f9b17206525941",
+  "amount" : "10.00",
+  "currency" : "USD",
+  "status" : "CONFIRMED",
+  "remainingToPay" : "-1.0",
+  "remainingToPayBtc" : "-0.0010",
+  "paymentTime" : "1411421013977",
+  "expirationTime" : "1411421014977",
+  "currentTime" : "1411403014977",
+  "merchantTransactionId" : "2015-03-10/123/1",
+  "transactionSpeed" : "LOW",
+  "notificationUrl" : "https://example.com/notify",
+  "message" : "payment for cookies",
+  "merchantTransactionDetails" : "{products: [1,2,3]}"
+}
+```
+
+In case of overpaid situation, the transaction is also in `CONFIRMED` state, but `remainingToPay` and `remainingToPayBtc` will be negative values.
+
 Explanation of the fields
 
 | Field Name            | Format And Meaning                                                                                                                                            |
